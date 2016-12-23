@@ -1,0 +1,35 @@
+{
+  "name": "koa.sass",
+  "version": "1.0.0",
+  "description": "Koa@2 middleware for processing scss",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clthck/koa-sass.git"
+  },
+  "keywords": [
+    "koa",
+    "koa2",
+    "sass",
+    "scss",
+    "middleware"
+  ],
+  "author": "darkturtle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clthck/koa-sass/issues"
+  },
+  "homepage": "https://github.com/clthck/koa-sass#readme",
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "koa-mount": "^2.0.0",
+    "koa-static": "^3.0.0",
+    "node-sass": "^4.1.1"
+  },
+  "devDependencies": {
+    "pryjs": "^1.0.3"
+  }
+}
