@@ -15,10 +15,12 @@ module.exports = ({ mountAt, src, dest }) => {
 
   return (ctx, next) => {
     const subPath = path.parse(ctx.path.slice(mountAt.length));
-    if (subPath.ext !== '.css') {
-      throw new Error(`Invalid stylesheet resource type. Currently css is the only one being supported`);
-    }
     const srcFile = path.join(src, subPath.dir, subPath.name + '.scss');
+
+    if (fs.existsSync(srcFile) === false || subPath.ext !== '.css') {
+      return next();
+    }
+
     const destFile = path.join(dest, subPath.dir, subPath.base);
     const result = sass.renderSync({
       file: srcFile
