@@ -10,7 +10,7 @@ npm i --save koa.sass
 
 ### Usage Example
 
-```
+```javascript
 const Koa = require('koa');
 const serveSass = require('koa.sass');
 const mount = require('koa-mount');
