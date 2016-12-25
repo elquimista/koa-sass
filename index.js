@@ -1,10 +1,11 @@
 'use strict';
 
-const path        = require('path');
-const fs          = require('fs-extra');
-const sass        = require('node-sass');
-const mount       = require('koa-mount');
-const serveStatic = require('koa-static');
+const path                    = require('path');
+const fs                      = require('fs-extra');
+const sass                    = require('node-sass');
+const nodeSassGlobImporter    = require('node-sass-glob-importer');
+const mount                   = require('koa-mount');
+const serveStatic             = require('koa-static');
 
 module.exports = ({ mountAt, src, dest }) => {
   mountAt = mountAt.substr(-1) === '/' ? mountAt.slice(0, -1) : mountAt;
@@ -23,7 +24,8 @@ module.exports = ({ mountAt, src, dest }) => {
 
     const destFile = path.join(dest, subPath.dir, subPath.base);
     const result = sass.renderSync({
-      file: srcFile
+      file: srcFile,
+      importer: nodeSassGlobImporter()
     });
 
     fs.writeFileSync(destFile, result.css);
