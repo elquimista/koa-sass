@@ -21,7 +21,8 @@ const app = new Koa();
 app.use(serveSass({
   mountAt: '/assets',
   src: './app/assets/stylesheets',
-  dest: './.tmp/stylesheets'
+  dest: './.tmp/stylesheets',
+  importPaths: ['./node_modules']
 });
 app.use(mount('/assets', serveStatic('./node_modules')));
 app.use(mount('/assets', serveStatic('./app/assets/javascripts')));
