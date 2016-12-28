@@ -7,7 +7,7 @@ const nodeSassGlobImporter    = require('node-sass-glob-importer');
 const mount                   = require('koa-mount');
 const serveStatic             = require('koa-static');
 
-module.exports = ({ mountAt, src, dest }) => {
+module.exports = ({ mountAt, src, dest, importPaths = [] }) => {
   mountAt = mountAt.substr(-1) === '/' ? mountAt.slice(0, -1) : mountAt;
 
   if (fs.existsSync(dest) === false) {
@@ -25,7 +25,8 @@ module.exports = ({ mountAt, src, dest }) => {
     const destFile = path.join(dest, subPath.dir, subPath.base);
     const result = sass.renderSync({
       file: srcFile,
-      importer: nodeSassGlobImporter()
+      importer: nodeSassGlobImporter(),
+      includePaths: importPaths
     });
 
     fs.writeFileSync(destFile, result.css);
